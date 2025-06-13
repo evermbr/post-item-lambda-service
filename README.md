@@ -13,6 +13,14 @@ This project contains an AWS Lambda maven application with [AWS Java SDK 2.x](ht
 The generated function handler class just returns the input. The configured AWS Java SDK client is created in `DependencyFactory` class and you can 
 add the code to interact with the SDK client based on your use case.
 
+### SQS Integration
+The application can optionally send data to an SQS queue after saving it to DynamoDB. This feature is controlled by the following environment variables:
+
+- `SQS_ENABLED`: Set to "true" to enable sending to SQS
+- `SQS_QUEUE_URL`: The URL of the SQS queue to send messages to
+
+When enabled, the application will send the book data as a JSON message to the specified SQS queue.
+
 #### Building the project
 ```
 mvn clean install
@@ -40,6 +48,5 @@ sam deploy --guided
 ```
 
 See [Deploying Serverless Applications](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-deploying.html) for more info.
-
 
 
